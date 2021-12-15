@@ -1,2 +1,2 @@
 # brownie_FundMe
-Smart Contract Application
+Smart Contract Crowd Fund Application
