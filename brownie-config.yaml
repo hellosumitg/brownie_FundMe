@@ -1,0 +1,28 @@
+dependencies:
+  # - <organization/repo>@<version> in this way we will use all the files in the selected repository
+  - smartcontractkit/chainlink-brownie-contracts@1.1.1
+compiler:
+  solc:
+    remappings:
+      - "@chainlink=smartcontractkit/chainlink-brownie-contracts@1.1.1"
+
+dotenv: .env
+# Now we can think why we are using "--network...." flag in command sometimes and not use someother times.
+# As from our "networks" section below brownie picks a default network to use and the "default: development" always.
+# However, we could set this to be anything that we wanted we could set the "default: ganache-local or rinkeby or other"
+# So whatever we fixed in our "brownie-config.yaml" file is what the network will be defaulted to....
+networks:
+  default: development
+  rinkeby:
+    eth_usd_price_feed: "0x8A753747A1Fa494EC906cE90E9f37563A8AF630e"
+    verify: True
+  mainnet-fork-dev:
+    # eth_usd_price_feed account is taken from "https://docs.chain.link/docs/ethereum-addresses/"
+    eth_usd_price_feed: "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419"
+    verify: False
+  development:
+    verify: False
+  ganache-local:
+    verify: False
+wallets:
+  from_key: ${PRIVATE_KEY}
